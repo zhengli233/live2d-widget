@@ -1,0 +1,23 @@
+{
+  "name": "houtiao-blog-live2d-widget",
+  "version": "0.0.3",
+  "description": "live2d widget for houtiao blog",
+  "main": "auto_load.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhengli233/live2d-widget.git"
+  },
+  "keywords": [
+    "houtiao-blog",
+    "live2d-widget"
+  ],
+  "author": "zhengli233",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhengli233/live2d-widget/issues"
+  },
+  "homepage": "https://github.com/zhengli233/live2d-widget#readme"
+}
