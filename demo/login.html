@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>看板娘登陆平台</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 <script src="../live2d.min.js"></script>
 <style>
@@ -114,6 +114,8 @@ body {
 }
 #live2d {
 	cursor: grab;
+	height: 300px;
+	width: 300px;
 }
 #live2d:active {
 	cursor: grabbing;
@@ -126,12 +128,12 @@ body {
 		<div id="inner">
 			<div id="cover">
 				<div id="text">
-					<span style="color: cyan;">MIMI</span><span style="color: white">POWERED</span>
+					<span style="color: cyan;">MIMI</span><span style="color: white;">POWERED</span>
 				</div>
 				<div id="detail"></div>
 				<div id="handle"></div>
 			</div>
-			<canvas class="mb-4" id="live2d" width="300" height="300"></canvas>
+			<canvas class="mb-4" id="live2d" width="800" height="800"></canvas>
 		</div>
 		<a id="info" href="javascript:info()"><i class="fa fa-lg fa-info"></i></a>
 		<a id="refresh" href="javascript:refresh()"><i class="fa fa-lg fa-refresh"></i></a>
@@ -150,6 +152,23 @@ body {
 	<p class="mt-5 mb-3 text-muted">Copyleft &copy; Mimi 2019</p>
 </form>
 <script>
+/*
+ * _(:з」∠)_
+ * Created by Shuqiao Zhang in 2019.
+ * https://zhangshuqiao.org
+ */
+
+/*
+ * This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ */
 window.addEventListener("load", () => {
 	"use strict";
 
@@ -158,10 +177,10 @@ window.addEventListener("load", () => {
 		return;
 	}
 
-	var apiPath = "https://live2d.fghrsh.net/api", state = 0,
+	let apiPath = "https://live2d.fghrsh.net/api", state = 0,
 		modelId = localStorage.getItem("modelId"),
 		modelTexturesId = localStorage.getItem("modelTexturesId");
-	if (modelId == null) {
+	if (modelId === null) {
 		modelId = 1;
 		modelTexturesId = 53;
 	}
@@ -180,7 +199,7 @@ window.addEventListener("load", () => {
 	}
 
 	function loadRandModel() {
-		var modelId = localStorage.getItem("modelId"),
+		const modelId = localStorage.getItem("modelId"),
 			modelTexturesId = localStorage.getItem("modelTexturesId");
 		fetch(`${apiPath}/rand_textures/?id=${modelId}-${modelTexturesId}`)
 			.then(response => response.json())
@@ -195,7 +214,7 @@ window.addEventListener("load", () => {
 	}
 
 	function loadOtherModel() {
-		var modelId = localStorage.getItem("modelId");
+		const modelId = localStorage.getItem("modelId");
 		fetch(`${apiPath}/switch/?id=${modelId}`)
 			.then(response => response.json())
 			.then(result => {
@@ -213,34 +232,34 @@ window.addEventListener("load", () => {
 			.then(result => {
 				alert("「" + result.hitokoto + "」——" + result.from);
 			});
-	}
+	};
 
 	window.refresh = function() {
 		state = 0;
 		coverPosition("10%");
 		document.getElementById("refresh").setAttribute("href", "javascript:void(0)");
 		setTimeout(loadRandModel, 1000);
-	}
+	};
 
 	document.getElementById("handle").addEventListener("click", () => {
-		if (state == 1) {
+		if (state === 1) {
 			state = 2;
 			coverPosition("80%");
 		}
-		else if (state == 2) {
+		else if (state === 2) {
 			state = 1;
 			coverPosition("20%");
 		}
 	});
 
 	document.querySelector("input[type=password]").addEventListener("focus", () => {
-		if (state == 2) {
+		if (state === 2) {
 			state = 1;
 			coverPosition("20%");
 		}
 	});
 	document.querySelector("input[type=password]").addEventListener("blur", () => {
-		if (state == 1) {
+		if (state === 1) {
 			state = 2;
 			coverPosition("80%");
 		}
