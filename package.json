@@ -1,6 +1,6 @@
 {
   "name": "houtiao-blog-live2d-widget",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "live2d widget for houtiao blog",
   "main": "auto_load.js",
   "scripts": {
